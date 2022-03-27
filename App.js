@@ -8,6 +8,7 @@ import Google from './google'
 import Statusbar from'./statusbar'
 import Tab from './app/tabdesign'
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import Shopdisplay from './app/shopdisplay';
 
 // import MySwitchNavigator from './app/switch';
 import { createSwitchNavigator, createStackNavigator,createAppContainer } 
@@ -27,37 +28,37 @@ const AppContainer=createAppContainer(MySwitchNavigator)
 var k=0;
 
 auth().onAuthStateChanged((user)=>{
-  console.log("user is",user)
+  // console.log("user is",user)
   if(user){
     // auth().signOut();
     // GoogleSignin.revokeAccess()
     // GoogleSignin.signOut();
-k=1;
+k=1
   }
 })
 
 const App = () => {
-  return <Mapping/>
-  // if(k==0){
-  //   return (
+
+  if(k==0){
+    return (
      
-  //     //  <Login></Login>
-  //     // <MySwitch/>
-  //     <NavigationContainer>
-  //       <AppContainer/>
-  //     </NavigationContainer>
-  //     // <createAppContainer/>
-  //     // <Text>hlooo</Text>
-  //    ) 
-  // }else{
-  //   return (
-  //     <NavigationContainer>
-  //  <Tab/>
+     
+   
+      <NavigationContainer>
+        <AppContainer/>
+      </NavigationContainer>
+      
+     ) 
+  }else{
+    return (
+      <NavigationContainer>
+   <Tab/>
 
-  //     </NavigationContainer>
+      </NavigationContainer>
 
-  //   )
-  // }
+    )
+
+  }
     
  
 } 

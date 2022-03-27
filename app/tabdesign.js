@@ -7,6 +7,7 @@ import Home from './home'
 import Profile from './profile'
 
 import { NavigationContainer } from '@react-navigation/native';
+import Search from './search';
 
 
 const Tab = createMaterialBottomTabNavigator();
@@ -27,7 +28,7 @@ const Tab = createMaterialBottomTabNavigator();
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
         }}/>
-      <Tab.Screen name="Search" component={Feed}   options={{
+      <Tab.Screen name="Search" component={Search}   options={{
           tabBarLabel: 'Search',
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="magnify" color={color} size={26} />
