@@ -90,19 +90,21 @@ export class Search extends Component {
               
             { (Object.keys(this.state.shops).length>0)?
                 <View>
-                    {Object.values(this.state.shops).forEach((value,key)=>{
-                    
-                          <View>
-                               <Text>vinay</Text>
-                      <Shopdisplay  name={value.details.name1} address={value.details.address} />
-                          </View>
-                      
+                    {Object.values(this.state.shops).map((value,key)=>{
+                    //c,l,n
+                         return(
+                            <View>
+                            {/* <Text>vinay{key}</Text> */}
+                   <Shopdisplay  name={value.details.name1} address={value.details.address} />
+                       </View>
+                   
+                         )
                           
                     }) 
 
                     }
                     {/* <Shopdisplay  name={value.details.name1} address={value.details.address} /> */}
-                       <Text>vinay</Text>
+                       {/* <Text>vinay</Text> */}
                     
                     
                    
