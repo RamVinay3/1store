@@ -16,28 +16,26 @@ import { ProgressBar, Colors } from 'react-native-paper';
           image:'',
           Uploading:false,
           Transfer:0,
-          uri:""
+          uri:"",
+          down:""
 
        }
      }
+    
       select_image=()=>{
         const options = {
             maxWidth: 2000,
             maxHeight: 2000,
+            selectionLimit: 2,
             storageOptions: {
               skipBackup: true,
               path: 'images'
             }
           };
           launchImageLibrary(
-            {
-              mediaType: 'photo',
-              includeBase64: false,
-              maxHeight: 200,
-              maxWidth: 200,
-            },
+          options,
             (response) => {
-                // console.log(respone)
+                console.log(response.assets.length>options.selectionLimit)
                 if(response.didCancel==true){
                   console.log("hello,you cancelled the picking");
                   // this.setState
@@ -77,7 +75,16 @@ import { ProgressBar, Colors } from 'react-native-paper';
         // console.log("you clicked on me")
 
        } ;
-       
+     componentDidMount(){
+      
+        
+        const reference = storage().ref('vinay');
+
+
+        reference.getDownloadURL().then((url)=>this.setState({down:url}))
+    
+   
+     }
        
        uploadImage = async () => {
         if(this.state.uri){
@@ -113,14 +120,14 @@ import { ProgressBar, Colors } from 'react-native-paper';
         console.log("you didn't select a pic")
       };
 
+     
+     
 
+        
     render() {
        
-        // const reference = storage().ref('/empty.png');
-      
 
-    //  console.log(this.state.uri,"vinay")
-
+  
         return (
             <View style={{display:'flex',justifyContent:'space-between',flexDirection:'column',margin:10}}>
                  <Button 
@@ -130,9 +137,9 @@ import { ProgressBar, Colors } from 'react-native-paper';
                 onPress={this.select_image}>
                     </Button>    
                     <View>
-                    <Text>pic is displayed</Text>
+                    {/* <Text>pic is displayed</Text> */}
                     {(this.state.uri) ? 
-                       (<Image source={{uri:this.state.uri}}></Image>): <Text>not selected image</Text>}
+                       (<Text>selected</Text>): <Text>not selected image</Text>}
                     </View>
                     
                     <View>
@@ -144,6 +151,9 @@ import { ProgressBar, Colors } from 'react-native-paper';
                           </Button> )
                       }
                     </View>
+                      <View>
+                      {(this.state.down)?(<Image style ={{width:200,height:300,backgroundColor:'black'}}source={{uri:this.state.down}}></Image>):(null)}
+                      </View>
                 
                   
                    </View>
